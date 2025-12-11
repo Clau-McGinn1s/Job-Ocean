@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,4 +16,25 @@ class Job extends Model
 
     public static array $experienceLevel = ['entry', 'intermediate', 'senior'];
     public static array $jobCategory = ['IT', 'Marketing', 'Education', 'Health', 'Service', 'Retail', 'Administration', 'Design', 'Logistics'];
+
+
+    public function scopeFilter(Builder | QueryBuilder $query, array $filters):Builder | QueryBuilder{
+        
+        $query->when($filters['search'] ?? null, fn($query, $search) => 
+            $query->where(function ($query) use($search){
+                $query->where('title', 'like', '%' . $search. '%')
+                ->orWhere('description', 'like', '%' . $search . '%');
+            }))
+        ->when($filters['min_salary'] ?? null, fn($query, $min_salary) => 
+            $query->where('salary', '>=', (int)$min_salary))
+        ->when($filters['max_salary'] ?? null, fn($query, $max_salary) =>
+            $query->where('salary', '<=', (int)$max_salary ))
+        ->when($filters['experience'] ?? null, fn($query, $experience)=>
+            $query->where('experience' , $experience))
+        ->when($filters['category'] ?? null, fn($query, $category)=>
+            $query->where('category', $category));
+        
+        
+        return $query;
+    }
 }
