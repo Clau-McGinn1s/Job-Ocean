@@ -1,7 +1,7 @@
 <x-layout>
-    <x-breadcrumbs class='rounded-b-none' :links="['Jobs' => route('jobs.index')]"/>
+    <x-breadcrumbs class='rounded-b-none rounded-t-none' :links="['Jobs' => route('jobs.index')]"/>
 
-    <x-card class='mb-1 text-sm text-slate-300 rounded-t-none py-2' x-data="">
+    <x-card class='text-sm text-slate-300 rounded-t-none py-2 mb-2' x-data="">
         <form action="{{ route('jobs.index') }}" method='GET' x-ref="form">
             <div class='mx-2 grid grid-cols-2 gap-3'>
                 <span class="my-1 font-bold">Search
@@ -29,9 +29,7 @@
             </button>
         </form>
     </x-card>
-    @isset($jobs)
-        <hr class="h-px border-2 mx-2 my-2 border-slate-400">
-    @endisset
+  
     @forelse ($jobs as $job)
         <x-job-card class='mb-2 px-3' :job='$job'>
             <span class='ml-2'>
@@ -50,11 +48,11 @@
             </div>
         </div>
     @endforelse
-    {{--  
+
     @if($jobs->count() > 1)
-        <div class='container bg-gray-200 mx-auto max-w-3xl p-2 rounded-sm'>
+        <div class='container rounded-t-lg rounded-b-lg text-black bg-slate-400 pl-5 max-w-4xl mb-8'>
             {{ $jobs->links() }}
         </div>
     @endif
-    --}}
+  
 </x-layout>
