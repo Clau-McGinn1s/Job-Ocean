@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,9 +32,14 @@ class AuthController extends Controller
 
 
         if(Auth::attempt($credentials, $remember)){
-            return redirect()->intended('/');
+            $username = User::where('email', $credentials['email'])->value('name');
+
+            session()->flash('success', "Welcome back $username");
+            return redirect()->route('jobs.index');
+
         }else{
-            return redirect()->back()->with('error', 'Invalid Credentials');
+            session()->flash('warning', 'Invalid Credentials');
+            return redirect()->route('auth.create');
         }
     }
 
@@ -47,6 +53,7 @@ class AuthController extends Controller
         request()->session()->invalidate();
         request()->session()->regenerateToken();
 
-        return redirect('/');
+        session()->flash('success', 'User logged out');
+        return redirect()->route('jobs.index')->with('success', 'User logged out');
     }
 }

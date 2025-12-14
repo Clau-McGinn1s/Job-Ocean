@@ -18,7 +18,9 @@ class JobController extends Controller
         );
 
         return view('jobs.index', 
-        ['jobs'=>Job::with('employer')->filter($filters)->paginate(25)]);
+            ['jobs'=>Job::with('employer')
+            ->filter($filters)
+            ->paginate(25)]);
     }
 
     public function show(Job $job){

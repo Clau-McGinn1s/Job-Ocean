@@ -8,7 +8,15 @@
     <x-job-card class='rounded-t-none mb-2 px-3' :job='$job'>
        <p class='text-xs text-slate-400 ml-2 mb-2 mr-56'>
             {!! nl2br(e($job->description)) !!}
-        </p>    
+        </p>   
+        
+        @auth
+            <div class='my-7 ml-3'>
+                 <a class='text-lg text-blue-300 hover:text-cyan-200' href='{{ route('job.application.create', $job) }}'>
+                    Apply for Job <i class="fa-solid fa-circle-chevron-right"></i>
+                </a>
+            </div>
+        @endauth
     </x-job-card > 
 
     <div class='container rounded-t-lg  text-black bg-cyan-600 pl-5 py-1 max-w-4xl'>
