@@ -6,10 +6,16 @@ use App\Models\Job;
 use App\Models\JobApplication;
 
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Attribute\Cache;
 
 class JobApplicationController extends Controller
 {
     public function create(Job $job){
+        if($job->jobApplications()->where
+        ('user_id', request()->user()->id)->exists()){
+            session()->flash('warning', 'You already applied to this job');
+            return redirect()->route('jobs.show', $job);
+        }
         return view('job_application.create', ['job' => $job]);
     }
 
@@ -30,8 +36,25 @@ class JobApplicationController extends Controller
             ...$data
         ]);
 
-        session()->flash('success', 'Applied to job!');
+        session()->flash('success', "Sent application for " . $job->title);
 
-        return redirect()->route('jobs.index');
+        return redirect()->route('jobs.show', $job);
+    }
+
+    public function index(Job $job){
+        JobApplication::where("job_id", $job->id)->get();
+
+        return view('job_application.index', [
+            "job" => $job,
+            "job_applications" => JobApplication::where("job_id", $job->id)->get()
+        ]);
+    }
+
+    public function destroy($job, JobApplication $application){
+        session()->flash('success',"Application deleted for " . $application->job->title);
+
+        JobApplication::whereId($application->id)->delete();
+
+        return redirect()->route('user.show', request()->user());
     }
 }

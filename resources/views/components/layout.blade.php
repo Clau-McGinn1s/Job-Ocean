@@ -25,7 +25,7 @@
             </ul>
             <ul class="flex space-x-2 items-center">
                 @auth
-                    <a href=#>
+                    <a href={{ route('user.show', request()->user())}}>
                         <p class='text-blue-300 hover:text-cyan-200 text-xl'>
                             {{auth()->user()->name ?? 'Anon'}}
                             <i class="fa-solid fa-user"></i>
@@ -47,23 +47,15 @@
                         </x-link-button>
                     </li>
                     <li>
-                        <x-link-button href="#">
-                            Sing Up
+                        <x-link-button  class='bg-cyan-500' :href="route('user.create')">
+                           <p class='text-blue-800'> Join</p>
                         </x-link-button>
                     </li>
                 @endauth
             </ul>
         </nav>    
-        @if(session()->has('success'))
-            <div  class='container text-black bg-green-600 pl-5 max-w-4xl'>
-                Success!  {{ session('success') }}
-            </div>
-        @endif
-         @if(session()->has('warning'))
-            <div class='container text-white bg-red-900 pl-5 max-w-4xl'>
-                Warning  {{ session('warning') }}
-            </div>
-        @endif
+
+        <x-flash-message/>
 
         {{ $slot }}
    </body>
