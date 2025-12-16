@@ -6,7 +6,7 @@
         $job->title => route('jobs.show', $job),
         'Application' => '#' ]"/>
     <x-job-card class='rounded-t-none mb-2 px-3' :job='$job'>
-       <p class='text-xs text-slate-400 ml-2 mb-2 mr-56'>
+       <p class='text-xs text-slate-700 ml-2 mb-2 mr-56'>
             {!! nl2br(e($job->description)) !!}
         </p>  
 
@@ -18,7 +18,7 @@
     <div class='container rounded-t-lg  text-black bg-cyan-600 pl-5 py-1 max-w-4xl'>
         <h2 class='text-xl font-semibold'>Application Form</h2>
     </div>
-    <x-card class='text-slate-300 text-md p-4 px-12 rounded-t-none'>
+    <x-card class='text-slate-900 text-md p-4 px-12 rounded-t-none'>
         <div class="flex items-center justify-between mb-3">
             <p>Name:</p>
             <p>{{auth()->user()->name}}</p>

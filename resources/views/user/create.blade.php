@@ -7,35 +7,35 @@
                 <h1 class='text-8xl pt-48'><i class="fa-solid fa-house-flood-water"></i></h1>
                 <h1 class='text-5xl font-bold'>Job Ocean</h1>
             </div>
-            <div class='rounded-r-xl bg-cyan-950 flex-col p-1 px-12  py-42'>
-                <h2 class='text-3xl font-bold text-slate-300 text-center mb-12'>Create an account</h2>
+            <div class='rounded-r-xl bg-slate-100 flex-col p-1 px-12  py-42'>
+                <h2 class='text-3xl font-bold text-slate-900 text-center mb-12'>Create an account</h2>
                 <form action="{{ route('user.store') }}" method="POST">
                     @csrf
 
                      <div class='my-4 flex-col space-y-1'>
-                        <label class='text-slate-300 grow block'>
+                        <label class='text-slate-900 grow block'>
                             Name
                         </label>
                         <x-text-input name="name" placeholder="Jean Smith" :useRef="false" />
                     </div>
                     <div class='my-4 flex-col space-y-1'>
-                        <label class='text-slate-300 grow block'>
+                        <label class='text-slate-900 grow block'>
                             E-mail
                         </label>
                         <x-text-input name="email" placeholder="example@mail.com" :useRef="false" />
                     </div>
                     <div class='my-4 flex-col space-y-1'>
-                        <label class='text-slate-300 grow block'>
+                        <label class='text-slate-900 grow block'>
                             Password
                         </label>
                         <x-text-input name="password" placeholder="**********" type="password" :useRef="false" />
                     </div>
                     <div class="flex justify-between">
-                       <a class='text-blue-400 hover:text-cyan-300 hover:underline text-sm' 
+                       <a class='text-blue-600 hover:text-cyan-300 hover:underline text-sm' 
                             href='{{ route('auth.create') }}'>
                             Already have an account?
                         </a>
-                        <a class='text-blue-400 hover:text-cyan-300 hover:underline text-sm' 
+                        <a class='text-blue-600 hover:text-cyan-300 hover:underline text-sm' 
                             href='{{ route('employer.create') }}'>
                             Are you looking to post a job listing?
                         </a>

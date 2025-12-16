@@ -13,7 +13,7 @@
         <!-- Styles / Scripts -->
             @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-   <body class='container bg-linear-to-bl from-slate-700 via-cyan-800 to-blue-950 mx-auto mt-3 max-w-4xl'>
+   <body class='container bg-linear-to-bl from-slate-300 via-cyan-400 to-blue-200 mx-auto mt-3 max-w-4xl'>
         <nav class='flex justify-between items-center px-2 rounded-t-xl py-3 container bg-blue-950 max-w-4xl'>
             <ul class="flex">
                 <li>
@@ -26,7 +26,7 @@
             <ul class="flex space-x-2 items-center">
                 @auth
                     <a href={{ route('user.show', request()->user())}}>
-                        <p class='text-blue-300 hover:text-cyan-200 text-xl'>
+                        <p class='text-blue-400 hover:text-cyan-200 text-xl'>
                             {{auth()->user()->name ?? 'Anon'}}
                             <i class="fa-solid fa-user"></i>
                         </p>
@@ -58,5 +58,17 @@
         <x-flash-message/>
 
         {{ $slot }}
+
+        <nav class='flex items-center px-2 rounded-b-xl py-3 container bg-blue-950 max-w-4xl'>
+            <ul class="flex">
+                <li>
+                    <a href="{{ route('jobs.index') }}"
+                        class='text-3xl  text-cyan-500 text-center hover:text-blue-200'>
+                        <i class="fa-solid fa-house-flood-water"></i> Job Ocean
+                    </a>
+                </li>
+            </ul>
+        </nav>    
+
    </body>
 </html>

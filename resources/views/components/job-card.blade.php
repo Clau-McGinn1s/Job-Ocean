@@ -1,8 +1,8 @@
  @props(["job"])  
    <x-card {{ $attributes->class([''])}}>
         <div class='flex justify-between'>
-            <h2 class='text-2xl font-bold text-slate-300'>{{$job->title}}</h2>
-            <h3 class='text-lg font-light text-blue-400'>$ {{number_format($job->salary)}}</h3>
+            <h2 class='text-2xl font-bold text-slate-900'>{{$job->title}}</h2>
+            <h3 class='text-lg font-light text-blue-600'>$ {{number_format($job->salary)}}</h3>
         </div>
         <p class='font-extralight text-xs text-slate-500 ml-2'>
             <i class="fa-regular fa-clock"></i>
@@ -15,14 +15,14 @@
                 @endif
             @endauth
         </p>
-        <div class='flex justify-between text-sm font-light text-slate-400 ml-2 items-center'>
+        <div class='flex justify-between text-sm font-light text-slate-700 ml-2 items-center'>
             <div class='flex space-x-2'>
                 <a href="{{ route('jobs.index', ['search'=>$job->employer->company_name])}}"
-                     class="hover:text-blue-300">
+                     class="hover:text-blue-500">
                     <h4>{{$job->employer->company_name}}</h4>
                 </a>
                 <a href="{{ route('jobs.index', ['search'=>$job->location])}}"
-                     class="hover:text-blue-300">
+                     class="hover:text-blue-500">
                     <i class="fa-solid fa-location-dot"></i>
                     {{$job->location}}
                 </a>

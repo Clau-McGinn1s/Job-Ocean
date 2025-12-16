@@ -1,4 +1,4 @@
-<nav {{$attributes->class(['container rounded-t-lg rounded-b-lg text-black bg-cyan-600 pl-5 max-w-4xl'])}}>
+<nav {{$attributes->class(['container rounded-t-lg rounded-b-lg text-black pl-5 max-w-4xl border-2 border-blue-800'])}}>
     <ul class='flex space-x-1'>
         <li> 
             <a class='hover:text-cyan-400' href="/">Home</a>

@@ -22,18 +22,18 @@
         
             <div class='mb-3'>
                 <div class='flex justify-between items-center'>
-                    <h3 class='text-lg font-light text-slate-300'>{{$job_application->user->name}}</h3>
-                    <h3 class='text-sm font-light text-slate-300'>{{$job_application->user->email}}</h3>
-                    <h3 class='text-lg font-light text-slate-300'> ${{number_format($job_application->expected_salary)}}</h3>
+                    <h3 class='text-lg font-light text-slate-900'>{{$job_application->user->name}}</h3>
+                    <h3 class='text-sm font-light text-slate-900'>{{$job_application->user->email}}</h3>
+                    <h3 class='text-lg font-light text-slate-900'> ${{number_format($job_application->expected_salary)}}</h3>
                     <x-link-button href="#" class="p-1 text-sm">Show CV</x-link-button>
                 </div>
                 <div class='flex justify-between items-center my-2'>
-                    <p class='font-extralight text-xs text-slate-400 ml-2'>
+                    <p class='font-extralight text-xs text-slate-700 ml-2'>
                         <i class="fa-regular fa-clock"></i>
                         Applied {{$job_application->created_at->diffForHumans()}}
                     </p>
                      <span class='ml-2'>
-                        <a class='text-sm text-blue-300 hover:text-cyan-200' href='mailto:{{$job_application->user->email}}'>
+                        <a class='text-sm text-blue-600 hover:text-cyan-400' href='mailto:{{$job_application->user->email}}'>
                             Contact <i class="fa-solid fa-circle-chevron-right"></i>
                         </a>
                     </span>
