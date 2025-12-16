@@ -16,7 +16,7 @@ class JobApplicationController extends Controller
             session()->flash('warning', 'You already applied to this job');
             return redirect()->route('jobs.show', $job);
         }
-        return view('job_application.create', ['job' => $job]);
+        return view('jobs.applications.create', ['job' => $job]);
     }
 
     public function store(Request $request, Job $job){
@@ -44,7 +44,7 @@ class JobApplicationController extends Controller
     public function index(Job $job){
         JobApplication::where("job_id", $job->id)->get();
 
-        return view('job_application.index', [
+        return view('jobs.applications.index', [
             "job" => $job,
             "job_applications" => JobApplication::where("job_id", $job->id)->get()
         ]);

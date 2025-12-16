@@ -31,7 +31,7 @@
             <p>Position:</p>
             <p>{{$job->title}}</p>
         </div>
-        <form  action="{{ route('job.application.store', $job) }}" method='post' x-ref='form'>
+        <form  action="{{ route('jobs.applications.store', $job) }}" method='post' x-ref='form'>
             @csrf
             <div class='flex items-center justify-between'>
                  <label for='expected_salary' class='block'>

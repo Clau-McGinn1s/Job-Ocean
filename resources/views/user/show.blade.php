@@ -36,7 +36,7 @@
                         <h2 class="text-md text-slate-800">Applied: {{$job_application->created_at->diffForHumans()}}</h2>
 
                          <form class='ml-2' 
-                            action="{{ route('job.application.destroy', ['job'=>$job_application->job, 'application'=>$job_application])}}" 
+                            action="{{ route('jobs.applications.destroy', ['job'=>$job_application->job, 'application'=>$job_application])}}" 
                             method="POST">
                             @csrf
                             @method('DELETE')

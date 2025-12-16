@@ -12,7 +12,7 @@
         
         @auth
             <div class='my-7 ml-3'>
-                 <a class='text-lg text-blue-600 hover:text-cyan-400' href='{{ route('job.application.create', $job) }}'>
+                 <a class='text-lg text-blue-600 hover:text-cyan-400' href='{{ route('jobs.applications.create', $job) }}'>
                     Apply for Job <i class="fa-solid fa-circle-chevron-right"></i>
                 </a>
             </div>

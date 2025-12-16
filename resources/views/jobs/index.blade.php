@@ -43,7 +43,7 @@
             @auth
                 @if(request()->user()->employer ? request()->user()->employer->id === $job->employer_id : false)
                     <span class='ml-2'>
-                        <a class='text-sm text-blue-600 hover:text-cyan-400' href='{{ route("job.application.index", $job) }}'>
+                        <a class='text-sm text-blue-600 hover:text-cyan-400' href='{{ route("jobs.applications.index", $job) }}'>
                             See Applications <i class="fa-solid fa-circle-chevron-right"></i>
                         </a>
                     </span>
