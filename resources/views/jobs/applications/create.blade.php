@@ -31,8 +31,18 @@
             <p>Position:</p>
             <p>{{$job->title}}</p>
         </div>
-        <form  action="{{ route('jobs.applications.store', $job) }}" method='post' x-ref='form'>
+        <form  action="{{ route('jobs.applications.store', $job) }}" method='post' x-ref='form'
+            enctype="multipart/form-data">
             @csrf
+            <div class='flex items-center justify-between mb-2'>
+                <label for='expected_salary' class='block'>
+                    Upload CV:
+                </label>
+                <x-text-input
+                    type="file"
+                    name="cv"
+                    :useRef="false"/>
+            </div>
             <div class='flex items-center justify-between'>
                  <label for='expected_salary' class='block'>
                     Expected Salary:

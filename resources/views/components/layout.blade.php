@@ -26,10 +26,18 @@
             <ul class="flex space-x-2 items-center">
                 @auth
                     <a href={{ route('user.show', request()->user())}}>
-                        <p class='text-blue-400 hover:text-cyan-200 text-xl'>
+                        @can("checkApplications", request()->user())
+                            <p class='text-blue-400 hover:text-cyan-200 text-xl'>
+                                {{auth()->user()->name ?? 'Anon'}} ⋅ {{auth()->user()->employer->company_name ?? ''}}
+                                <i class="fa-solid fa-user-tie"></i>
+                            </p>
+                        @else
+                            <p class='text-blue-400 hover:text-cyan-200 text-xl'>
                             {{auth()->user()->name ?? 'Anon'}}
                             <i class="fa-solid fa-user"></i>
                         </p>
+                        @endcan
+                       
                     </a>
                     <li>
                         <form action="{{ route('auth.destroy') }}" method='POST'>

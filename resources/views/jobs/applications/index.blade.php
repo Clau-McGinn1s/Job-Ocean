@@ -6,10 +6,10 @@
 
     <x-job-card class='rounded-t-none mb-2 px-3' :job='$job'/>
   
-    <div class='container rounded-t-lg  text-black bg-cyan-600 pl-5 py-1 max-w-4xl'>
+    <div class='container rounded-t-lg  text-black bg-none border-2 border-blue-700 pl-5 py-1 max-w-4xl shadow-4xl shadow-black'>
         <h2 class='text-xl font-semibold'>Job Applications</h2>
     </div>
-    <x-card class='px-3 rounded-t-none'>
+    <x-card class='px-3 rounded-t-none mb-2'>
         @if($job_applications->count() > 0)
         <div class=' px-2 flex justify-between'>
             <p class='font-extralight text-sm text-slate-500 ml-2'>Full Name</p>

@@ -8,10 +8,14 @@ use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
-    public function index(Request $request){
-
-        if($request->user()->employer ?? false){
-            return $this->companyIndex($request->user()->employer->company_name);
+    public function index(Request $request)
+    {   
+        if($request->user()?->can('checkApplications', $request->user())){
+            return view('jobs.index', [
+                'jobs'=>Job::with('employer')
+                ->filter(['search' => $request->user()->employer->company_name])
+                ->paginate(25)
+            ]);
         }
 
         $filters = $request->only(
@@ -22,17 +26,11 @@ class JobController extends Controller
             'category',
         );
 
-        return view('jobs.index', 
-            ['jobs'=>Job::with('employer')
+        return view('jobs.index', [
+            'jobs'=>Job::with('employer')
             ->filter($filters)
-            ->paginate(25)]);
-    }
-
-    private function companyIndex($companyName){
-         return view('jobs.index', 
-            ['jobs'=>Job::with('employer')
-            ->filter(['search' => $companyName])
-            ->paginate(25)]);
+            ->paginate(25)
+        ]);
     }
 
     public function show(Job $job){

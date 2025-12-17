@@ -54,7 +54,11 @@ class UserController extends Controller
     {
         $job_applications = JobApplication::where("user_id", $user->id)->get();
 
-        $listed_jobs = Job::where('employer_id', $user->employer?->id)->get();
+        if($user->can('checkApplications', $user)){
+            $listed_jobs = Job::where('employer_id', $user->employer->id)->get();
+        }else{
+            $listed_jobs = [];
+        }
 
         return view('user.show', [
             "user" => $user,

@@ -11,12 +11,31 @@
         </p>   
         
         @auth
+             @can('apply', $job)
+                <div class='my-7 ml-3'>
+                    <a class='text-lg text-blue-600 hover:text-cyan-400' href='{{ route('jobs.applications.create', $job) }}'>
+                        Apply for Job <i class="fa-solid fa-circle-chevron-right"></i>
+                    </a>
+                </div>
+            @else
+                <div class='my-7 ml-3 flex space-x-3'>
+                    <p class='text-md text-slate-600'>
+                        Already applied to job
+                    </p>
+                    <a class='text-lg text-blue-600 hover:text-cyan-400' href='{{ route('user.show',  request()->user())}}'>
+                        Check application <i class="fa-solid fa-circle-chevron-right"></i>
+                    </a>
+                </div>
+            @endcan
+        @else
             <div class='my-7 ml-3'>
-                 <a class='text-lg text-blue-600 hover:text-cyan-400' href='{{ route('jobs.applications.create', $job) }}'>
+                <a class='text-lg text-blue-600 hover:text-cyan-400' href='{{ route('jobs.applications.create', $job) }}'>
                     Apply for Job <i class="fa-solid fa-circle-chevron-right"></i>
                 </a>
             </div>
         @endauth
+       
+      
     </x-job-card > 
 
     <div class='container rounded-t-lg  text-black bg-none border-2 border-blue-700 pl-5 py-1 max-w-4xl shadow-4xl shadow-black'>
