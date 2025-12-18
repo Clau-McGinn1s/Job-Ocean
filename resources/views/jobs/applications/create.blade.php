@@ -35,23 +35,20 @@
             enctype="multipart/form-data">
             @csrf
             <div class='flex items-center justify-between mb-2'>
-                <label for='expected_salary' class='block'>
-                    Upload CV:
-                </label>
+                <x-label for="cv" label="Upload CV:" :required="true"/>
                 <x-text-input
                     type="file"
                     name="cv"
                     :useRef="false"/>
             </div>
             <div class='flex items-center justify-between'>
-                 <label for='expected_salary' class='block'>
-                    Expected Salary:
-                </label>
+                <x-label for="expected_salary" label="Expected Salary:"  :required="true"/>
                 <x-text-input
                     type='number'
                     name='expected_salary' 
                     placeholder="12500"
-                    :useRef="false"/>
+                    :useRef="false"
+                />
             </div>
             <div class="flex items-center justify-center mt-5">
               <x-button class="w-2xl">Apply to job</x-button>

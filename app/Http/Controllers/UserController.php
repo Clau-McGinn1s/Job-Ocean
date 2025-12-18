@@ -52,10 +52,10 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $job_applications = JobApplication::where("user_id", $user->id)->get();
+        $job_applications = JobApplication::where("user_id", $user->id)->latest()->get();
 
         if($user->can('checkApplications', $user)){
-            $listed_jobs = Job::where('employer_id', $user->employer->id)->get();
+            $listed_jobs = Job::where('employer_id', $user->employer->id)->latest('updated_at')->get();
         }else{
             $listed_jobs = [];
         }
@@ -66,7 +66,6 @@ class UserController extends Controller
             "listed_jobs" => $listed_jobs
         ]);
     }
-
     /**
      * Show the form for editing the specified resource.
      */

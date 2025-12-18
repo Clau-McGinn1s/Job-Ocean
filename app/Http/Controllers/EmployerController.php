@@ -20,7 +20,7 @@ class EmployerController extends Controller
             "name" => "required|string|min:5|max:120",
             "email" => "required|email",
             "password" => "required|min:5|max:20",
-            "company_name" => "required"
+            "company_name" => "required|min:5|unique:employers,company_name"
         ]);
 
         $user = \App\Models\User::create([
@@ -40,4 +40,5 @@ class EmployerController extends Controller
 
         return redirect()->route('jobs.index');
     }
+
 }

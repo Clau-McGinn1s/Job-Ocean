@@ -9,13 +9,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Job extends Model
 {
     /** @use HasFactory<\Database\Factories\JobFactory> */
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'positions';
+    protected $fillable = [
+        "title", 
+        "description",
+        "location",
+        "salary",
+        "category",
+        "experience"
+    ];
 
     public static array $experienceLevel = ['entry', 'intermediate', 'senior'];
     public static array $jobCategory = ['IT', 'Marketing', 'Education', 'Health', 'Service', 'Retail', 'Administration', 'Design', 'Logistics'];
@@ -53,11 +62,11 @@ class Job extends Model
 
     public function hasUserApplied(Authenticatable|User|int $user) : bool 
     {
-        return $this->whereHas(
+        return $this->where('id', $this->id)->
+            whereHas(
                 'jobApplications',
                 fn($query) => $query->where('user_id', $user->id ?? $user)
-            )
-        ->exists();
+            )->exists();
     }
 
     public function isUserEmployer(Authenticatable|User|int $user) : bool 

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class TextInput extends Component
+class Select extends Component
 {
     /**
      * Create a new component instance.
@@ -14,12 +14,12 @@ class TextInput extends Component
     public function __construct(
         public ?string $value = null,
         public ?string $name = null,
-        public ?string $placeholder = null,
-        public bool $useRef = true,
-        public ?string $type = 'text',
+        public ?array $options
     )
     {
-        //
+        if($this->options === null){
+            $this->options = [];
+        }
     }
 
     /**
@@ -27,6 +27,6 @@ class TextInput extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.text-input');
+        return view('components.select');
     }
 }

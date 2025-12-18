@@ -42,11 +42,31 @@
     @forelse ($jobs as $job)
         <x-job-card class='mb-2 px-3' :job='$job'>
             @can('viewApplications', $job)
-                 <span class='ml-2'>
-                    <a class='text-sm text-blue-600 hover:text-cyan-400' href='{{ route("jobs.applications.index", $job) }}'>
-                        See Applications <i class="fa-solid fa-circle-chevron-right"></i>
-                    </a>
-                </span>
+                <div class="flex justify-between items-center mt-2">
+                    <span class='ml-2'>
+                        <a class='text-sm text-blue-600 hover:text-cyan-400' href='{{ route("jobs.applications.index", $job) }}'>
+                            See Applications <i class="fa-solid fa-circle-chevron-right"></i>
+                        </a>
+                    </span>
+                    <div class="flex space-x-2">
+                        <span>
+                            <form action="{{route('jobs.destroy', $job)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" onclick="return confirm('Delete Job {{$job->title}} ?')"
+                                    class="flex items-center rounded-lg border border-red-600 bg-amber-800 text-slate-200 text-sm py-2 px-3  hover:bg-amber-500">
+                                   <i class="fa-solid fa-square-minus"></i> Delete 
+                                </button>
+                            </form>
+                        </span>
+                        <span>
+                            <x-link-button class="p-0 text-sm text-slate-200" :href="route('jobs.edit', $job)">
+                                <i class="fa-solid fa-square-pen"></i> Edit
+                            </x-link-button>
+                        </span>
+                    </div>
+                    
+                </div>
             @else
                 <span class='ml-2'>
                     <a class='text-sm text-blue-600 hover:text-cyan-400' href='{{ route("jobs.show", $job) }}'>
@@ -65,10 +85,18 @@
             </div>
         </div>
     @endforelse
+    @can('checkApplications', request()->user())
+     @if (request()->user()->employer->jobs()->onlyTrashed()->exists())
+        <span class='mt-8 flex justify-end'>
+            <a class='text-xs text-blue-800 hover:underline' href='{{ route("jobs.trashed", request()->user()) }}'>
+                See Deleted Jobs <i class="fa-solid fa-trash-can"></i>
+            </a>
+        </span>
+    @endif
+    @endcan
     @if($jobs->count() > 1)
         <div class='container rounded-t-lg rounded-b-lg text-black bg-blue-300 pl-5 max-w-4xl mb-8'>
             {{ $jobs->links() }}
         </div>
     @endif
-  
 </x-layout>

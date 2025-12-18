@@ -13,27 +13,19 @@
                     @csrf
 
                     <div class='my-4 flex-col space-y-1'>
-                        <label class='text-slate-900 grow block'>
-                            Company Name
-                        </label>
+                        <x-label for="company_name" label="Company Name"  :required="true"/>
                         <x-text-input name="company_name" placeholder="Example Jobs LLC" :useRef="false" />
                     </div>
                      <div class='my-4 flex-col space-y-1'>
-                        <label class='text-slate-900 grow block'>
-                            Name
-                        </label>
+                        <x-label for="name" label="Full name"  :required="true"/>
                         <x-text-input name="name" placeholder="Jean Smith" :useRef="false" />
                     </div>
                     <div class='my-4 flex-col space-y-1'>
-                        <label class='text-slate-900 grow block'>
-                            E-mail
-                        </label>
+                        <x-label for="email" label="Email"  :required="true"/>
                         <x-text-input name="email" placeholder="example@mail.com" :useRef="false" />
                     </div>
                     <div class='my-4 flex-col space-y-1'>
-                        <label class='text-slate-900 grow block'>
-                            Password
-                        </label>
+                        <x-label for="password" label="Create a Password"  :required="true"/>
                         <x-text-input name="password" placeholder="**********" type="password" :useRef="false" />
                     </div>
                     <div class="flex justify-between">

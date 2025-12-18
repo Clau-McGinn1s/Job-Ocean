@@ -15,11 +15,14 @@ return new class extends Migration
             $table->id();
 
             $table->foreignIdFor(\App\Models\User::class)->constrained(); //applicant
-            $table->foreignIdFor(\App\Models\Job::class)->constrained(); //job
+            $table->foreignIdFor(\App\Models\Job::class)->constrained()
+                ->onDelete("cascade"); //job
 
             $table->unsignedInteger('expected_salary');
 
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

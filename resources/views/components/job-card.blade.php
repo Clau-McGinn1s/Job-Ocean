@@ -5,12 +5,18 @@
             <h3 class='text-lg font-light text-blue-600'>$ {{number_format($job->salary)}}</h3>
         </div>
         <p class='font-extralight text-xs text-slate-500 ml-2'>
-            <i class="fa-regular fa-clock"></i>
-            {{$job->created_at->diffForHumans()}} 
-            @can('viewApplications', $job)
-                <i class="fa-solid fa-image-portrait"></i>
-                {{number_format($job->jobApplications->count())}} Applications
-            @endcan
+            @if ($job->trashed())
+                <i class="fa-solid fa-trash"></i>
+                Deleted {{$job->deleted_at->diffForHumans()}} 
+            @else
+                <i class="fa-regular fa-clock"></i>
+                {{$job->updated_at->diffForHumans()}} 
+                {{$job->updated_at->eq($job->created_at) ? '' : ' (Edited)'}}
+                @can('viewApplications', $job)
+                    <i class="fa-solid fa-image-portrait"></i>
+                    {{number_format($job->jobApplications->count())}} Applications
+                @endcan
+            @endif
         </p>
         <div class='flex justify-between text-sm font-light text-slate-700 ml-2 items-center'>
             <div class='flex space-x-2'>

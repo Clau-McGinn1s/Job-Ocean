@@ -27,6 +27,13 @@
                         <span class='text-sm font-light text-slate-700'>Company  </span>
                         {{$user->employer->company_name}}
                     </h3>
+                    <a class='text-lg text-blue-600 hover:text-cyan-400' href='{{ route("jobs.trashed", $user) }}'>
+                        See Deleted Jobs <i class="fa-solid fa-trash-can"></i>
+                    </a>
+                @else
+                    <a class='text-lg text-blue-600 hover:text-cyan-400' href='{{ route("jobs.applications.trashed", $user) }}'>
+                        See Deleted Applications <i class="fa-solid fa-trash-can"></i>
+                    </a>
                 @endcan
             </div>
         </div>
@@ -69,7 +76,7 @@
                         @csrf
                         @method('DELETE')
                         <button class='text-sm text-amber-800 hover:text-amber-600' type='submit'>
-                                Delete Application <i class="fa-solid fa-circle-xmark"></i>
+                            Delete Application <i class="fa-solid fa-circle-xmark"></i>
                         </button>
                     </form>       
 

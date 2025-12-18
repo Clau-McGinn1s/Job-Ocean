@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use App\Models\JobApplication;
+use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,8 +55,6 @@ class JobApplicationController extends Controller
 
     public function index(Job $job)
     {
-        JobApplication::where("job_id", $job->id)->get();
-
         return view('jobs.applications.index', [
             "job" => $job,
             "job_applications" => JobApplication::where("job_id", $job->id)->get()
@@ -68,5 +67,17 @@ class JobApplicationController extends Controller
         JobApplication::whereId($application->id)->delete();
 
         return redirect()->route('user.show', request()->user());
+    }
+
+    public function trashed(User $user)
+    {   
+        if(!$user->jobApplications()->onlyTrashed()->exists()){
+            session()->flash("Warning", "No deleted Job Applications found");
+            return redirect()->route("user.show", $user);
+        }
+        return view('jobs.applications.trashed', [
+            "user" => $user,
+            "job_applications" => $user->jobApplications()->onlyTrashed()->get()
+        ]);
     }
 }

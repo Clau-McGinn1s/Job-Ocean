@@ -1,7 +1,7 @@
 <x-layout>
     <x-breadcrumbs class='rounded-b-none rounded-t-none' :links="[
         'Jobs' => route('jobs.index'),
-        $job->title => route('jobs.show', $job),
+        $job->title => '#',
         'Applications' => '#']"/>
 
     <x-job-card class='rounded-t-none mb-2 px-3' :job='$job'/>

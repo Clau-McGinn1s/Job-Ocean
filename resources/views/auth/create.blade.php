@@ -13,25 +13,19 @@
                     @csrf
                     
                     <div class='my-4 flex-col space-y-1'>
-                        <label class='text-slate-900 grow block'>
-                            E-mail
-                        </label>
+                        <x-label for="email" label="Email"  :required="true"/>
                         <x-text-input name="email" placeholder="example@mail.com" :useRef="false" />
                     </div>
                     <div class='my-4 flex-col space-y-1'>
-                        <label class='text-slate-900 grow block'>
-                            Password
-                        </label>
+                        <x-label for="password" label="Password"  :required="true"/>
                         <x-text-input name="password" placeholder="**********" type="password" :useRef="false" />
                     </div>
                     <div class="flex justify-between">
-                        <div >
+                        <div class='flex items-center'>
                             <div class='flex items-center space-x-1'>
                                 <input type='checkbox' name='remember'
                                 class='appearance-none w-3 h-3 rounded-sm border border-cyan-700 checked:bg-cyan-300 checked:border-cyan-300'/>
-                                <label class='text-slate-700 text-sm' for='remember'>
-                                    Remember Me
-                                </label>
+                                <x-label for="remember" label="Remember Me"/>
                             </div>
                         </div>
                         <a class='text-blue-600 hover:text-cyan-300 hover:underline text-sm' 
