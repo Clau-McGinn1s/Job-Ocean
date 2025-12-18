@@ -47,7 +47,6 @@ class JobApplicationController extends Controller
             'expected_salary' => $data['expected_salary'],
             'cv_path' => $path
         ]);
-
         session()->flash('success', "Sent application for " . $job->title);
 
         return redirect()->route('jobs.show', $job);

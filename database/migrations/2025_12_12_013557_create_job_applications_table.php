@@ -19,6 +19,7 @@ return new class extends Migration
                 ->onDelete("cascade"); //job
 
             $table->unsignedInteger('expected_salary');
+            $table->string('cv_path')->nullable();
 
             $table->timestamps();
 

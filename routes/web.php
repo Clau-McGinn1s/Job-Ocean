@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DownloadCv;
 use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\UserController;
@@ -42,3 +43,6 @@ Route::resource('user', UserController::class)
 
 Route::resource('employer', EmployerController::class)
     ->only(['create', 'store', 'show']);
+
+Route::get('jobs/applications/download/{application}', DownloadCv::class)
+    ->name('jobs.applications.download');

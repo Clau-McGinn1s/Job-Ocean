@@ -27,6 +27,21 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+         $myCo = User::factory()->create([
+            "name" => "Simone Till",
+            "email" => "mcginnisCo@yahoo.com"
+        ]);
+
+        Employer::factory()->create([
+            "user_id" => $myCo->id
+        ]);
+
+           User::factory()->create([
+            'name' => 'Clau Tester',
+            'email' => 'clau.mcginnis@yahoo.com'
+        ]);
+
+
         $employers = Employer::all();
 
          for($i = 0; $i < 100; $i++){
@@ -46,19 +61,7 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-        User::factory()->create([
-            'name' => 'Clau Tester',
-            'email' => 'clau.mcginnis@yahoo.com'
-        ]);
-
-        $myCo = User::factory()->create([
-            "name" => "Simone Till",
-            "email" => "mcginnisCo@yahoo.com"
-        ]);
-
-        Employer::factory()->create([
-            "user_id" => $myCo->id
-        ]);
-
+     
+       
     }
 }
