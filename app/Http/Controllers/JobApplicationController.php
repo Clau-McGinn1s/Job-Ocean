@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class JobApplicationController extends Controller
 {
@@ -63,6 +64,9 @@ class JobApplicationController extends Controller
     public function destroy($job, JobApplication $application){
         session()->flash('success',"Application deleted for " . $application->job->title);
 
+        if($application->cv_path !== "cvs/pdf_test.pdf"){
+            Storage::delete($application->cv_path);
+        }
         JobApplication::whereId($application->id)->delete();
 
         return redirect()->route('user.show', request()->user());
