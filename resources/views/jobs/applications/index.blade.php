@@ -25,7 +25,7 @@
                     <h3 class='text-lg font-light text-slate-900'>{{$job_application->user->name}}</h3>
                     <h3 class='text-sm font-light text-slate-900'>{{$job_application->user->email}}</h3>
                     <h3 class='text-lg font-light text-slate-900'> ${{number_format($job_application->expected_salary)}}</h3>
-                    <x-link-button href="{{ route('jobs.applications.download', $job_application) }}" class="p-1 text-sm">Download CV</x-link-button>
+                    <x-link-button href="{{ route('jobs.applications.download', $job_application) }}" class="p-1 text-sm text-slate-200">Download CV</x-link-button>
                 </div>
                 <div class='flex justify-between items-center my-2'>
                     <p class='font-extralight text-xs text-slate-700 ml-2'>

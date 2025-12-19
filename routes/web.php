@@ -6,8 +6,10 @@ use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmployerController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProfilePicDelete;
+use App\Http\Controllers\ProfilePicUpload;
 
-use App\Models\JobApplication;
 use Illuminate\Support\Facades\Route;
 
 Route::get('', fn() => to_route('jobs.index'));
@@ -36,6 +38,9 @@ Route::middleware('auth')->group(function(){
 
     Route::get("jobs/{user}/applications/trashed", [JobApplicationController::class, "trashed"])
         ->name("jobs.applications.trashed");
+
+    Route::resource("user.profile", ProfileController::class)
+        ->only(['create', 'store', 'edit', 'update', 'show']);
 });
 
 Route::resource('user', UserController::class)
@@ -46,3 +51,9 @@ Route::resource('employer', EmployerController::class)
 
 Route::get('jobs/applications/download/{application}', DownloadCv::class)
     ->name('jobs.applications.download');
+
+Route::post('user/profile/{profile}/picture', ProfilePicUpload::class)
+    ->name('user.profile.picture.store');
+
+Route::get('user/profile/{profile}/picture/delete', ProfilePicDelete::class)
+    ->name('user.profile.picture.delete');
