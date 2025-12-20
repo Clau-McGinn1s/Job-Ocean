@@ -29,16 +29,14 @@
                         @can("checkApplications", request()->user())
                             <p class='text-blue-400 hover:text-cyan-200 text-xl'>
                                 {{auth()->user()->name ?? 'Anon'}} ⋅ {{auth()->user()->employer->company_name ?? ''}}
-                                <i class="fa-solid fa-user-tie"></i>
                             </p>
                         @else
                             <p class='text-blue-400 hover:text-cyan-200 text-xl'>
                             {{auth()->user()->name ?? 'Anon'}}
-                            <i class="fa-solid fa-user"></i>
-                        </p>
+                            </p>
                         @endcan
-                       
                     </a>
+                    <x-profile-picture :profile="auth()->user()->profile"/>
                     <li>
                         <form action="{{ route('auth.destroy') }}" method='POST'>
                             @csrf

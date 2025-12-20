@@ -8,9 +8,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProfilePicDelete;
+use App\Http\Controllers\ProfilePicGet;
 use App\Http\Controllers\ProfilePicUpload;
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 Route::get('', fn() => to_route('jobs.index'));
 
@@ -57,3 +59,7 @@ Route::post('user/profile/{profile}/picture', ProfilePicUpload::class)
 
 Route::get('user/profile/{profile}/picture/delete', ProfilePicDelete::class)
     ->name('user.profile.picture.delete');
+
+Route::get('profile/picture/{path}', ProfilePicGet::class)
+    ->where('path', '.*')
+    ->name('profile.picture');

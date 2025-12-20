@@ -5,13 +5,9 @@
         $user->name => '#' ]"/>
     
     <x-card class='rounded-t-none mb-2 px-3 py-5'>
-        <div class='flex'>
+        <div class='flex space-x-2'>
             <span class='text-9xl  text-blue-600'>
-                @can('checkApplications', $user)
-                    <i class="fa-solid fa-user-tie"></i>
-                @else
-                    <i class="fa-solid fa-user"></i>
-                @endcan
+                <x-profile-picture class="w-25 h-25 border-2 border-blue-950"  :profile="$user->profile"/>
             </span>
             <div class='flex-col justify-between'>
                 <h2 class='text-xl font-bold text-slate-900'>
