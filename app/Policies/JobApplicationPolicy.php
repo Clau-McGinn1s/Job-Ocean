@@ -16,6 +16,15 @@ class JobApplicationPolicy
         return $jobApplication->job->isUserEmployer($user);
     }
 
+    public function viewAny(User $user):bool
+    {
+        return $user->hasEmployer();
+    }
+
+    public function view(User $user, JobApplication $jobApplication){
+        return $user->id === $jobApplication->user_id;
+    }
+
     /**
      * Determine whether the user can restore the model.
      */

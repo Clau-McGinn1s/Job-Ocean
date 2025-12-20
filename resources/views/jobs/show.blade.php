@@ -38,7 +38,7 @@
       
     </x-job-card > 
 
-    <div class='container rounded-t-lg  text-black bg-none border-2 border-blue-700 pl-5 py-1 max-w-4xl shadow-4xl shadow-black'>
+    <div class='container rounded-t-lg  text-black bg-cyan-200 opacity-70 border-2 border-blue-700 pl-5 py-1 max-w-4xl shadow-4xl shadow-black'>
         <h2 class='text-xl font-semibold'>More jobs from <span class="text-blue-800">{{$job->employer->company_name}}</span></h2>
     </div>
     <x-card class='mb-2 pt-2 px-3 rounded-t-none'>

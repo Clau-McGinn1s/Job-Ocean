@@ -21,7 +21,7 @@ class ProfilePolicy
      */
     public function view(User $user, Profile $profile): bool
     {
-        return $user->id === $profile->user_id || $user->hasEmployer();
+        return $profile->isUserTheOwner($user) || $user->hasEmployer();
     }
 
     /**
@@ -29,7 +29,7 @@ class ProfilePolicy
      */
     public function create(User $user): bool
     {
-        return $user->profile()->exists();
+        return !$user->profile()->exists();
     }
 
     /**
@@ -40,4 +40,8 @@ class ProfilePolicy
         return $user->id === $profile->user_id;
     }
 
+    public function contact(User $user, Profile $profile):bool
+    {
+        return $user->id !== $profile->user_id;
+    }
 }

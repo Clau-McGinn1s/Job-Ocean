@@ -13,7 +13,7 @@
         <!-- Styles / Scripts -->
             @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-   <body class='container bg-linear-to-bl from-slate-300 via-cyan-400 to-blue-200 mx-auto mt-3 max-w-4xl'>
+    <body class="container bg-img-ocean bg-center bg-fixed mx-auto mt-3 max-w-4xl min-h-screen" >
         <nav class='flex justify-between items-center px-2 rounded-t-xl py-3 container bg-blue-950 max-w-4xl'>
             <ul class="flex">
                 <li>
@@ -25,7 +25,10 @@
             </ul>
             <ul class="flex space-x-2 items-center">
                 @auth
-                    <a href={{ route('user.show', request()->user())}}>
+                    <a class="flex gap-3 items-center" href={{ route('user.profile.show', [ 
+                        "user" => auth()->user(), 
+                        "profile" => auth()->user()->profile
+                        ])}}>
                         @can("checkApplications", request()->user())
                             <p class='text-blue-400 hover:text-cyan-200 text-xl'>
                                 {{auth()->user()->name ?? 'Anon'}} ⋅ {{auth()->user()->employer->company_name ?? ''}}
@@ -35,8 +38,9 @@
                             {{auth()->user()->name ?? 'Anon'}}
                             </p>
                         @endcan
+                        <x-profile-picture :profile="auth()->user()->profile"/>
                     </a>
-                    <x-profile-picture :profile="auth()->user()->profile"/>
+                    
                     <li>
                         <form action="{{ route('auth.destroy') }}" method='POST'>
                             @csrf
@@ -65,16 +69,8 @@
 
         {{ $slot }}
 
-        <nav class='flex items-center px-2 rounded-b-xl py-3 container bg-blue-950 max-w-4xl'>
-            <ul class="flex">
-                <li>
-                    <a href="{{ route('jobs.index') }}"
-                        class='text-3xl  text-cyan-500 text-center hover:text-blue-200'>
-                        <i class="fa-solid fa-house-flood-water"></i> Job Ocean
-                    </a>
-                </li>
-            </ul>
-        </nav>    
-
+        <div class="mt-4 flex justify-center">
+            <p class="text-xs font-extralight text-blue-950">Job Ocean Made by Clau McGinnis using Laravel 12</p>
+        </div>
    </body>
 </html>

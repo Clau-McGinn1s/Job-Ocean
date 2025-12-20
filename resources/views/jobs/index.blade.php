@@ -21,7 +21,7 @@
                                 <x-text-input name='max_salary' value="{{ request('max_salary') }}" placeholder='To'/>
                             </span>
                         </span>
-                        <x-radio-group
+                        <x-radio-group class='flex-wrap'
                             name="experience"
                             :options="\App\Models\Job::$experienceLevel"
                             default="all"
@@ -95,7 +95,7 @@
     @endif
     @endcan
     @if($jobs->count() > 1)
-        <div class='container rounded-t-lg rounded-b-lg text-black bg-blue-300 pl-5 max-w-4xl mb-8'>
+        <div class='container rounded-t-lg rounded-b-lg text-black bg-white opacity-90 pl-5 max-w-4xl mb-8'>
             {{ $jobs->links() }}
         </div>
     @endif

@@ -37,7 +37,7 @@
     </x-card>
 
     @can('checkApplications', $user)
-        <div class='container rounded-t-lg  text-black bg-none border-2 border-blue-700 pl-5 py-1 max-w-4xl shadow-4xl shadow-black'>
+        <div class='container rounded-t-lg  text-black  bg-cyan-200 opacity-70 border-2 border-blue-700 pl-5 py-1 max-w-4xl shadow-4xl shadow-black'>
             <h2 class='text-xl font-semibold'>Listed jobs for {{ $user->employer->company_name }}</h2>
         </div>
         <x-card class='mb-2 pt-2 px-3 rounded-t-none'>
@@ -56,7 +56,7 @@
     @endcan
 
     
-    <div class='container rounded-t-lg  text-blackbg-none border-2 border-blue-700 pl-5 py-1 max-w-4xl shadow-4xl shadow-black'>
+    <div class='container rounded-t-lg  text-black  bg-cyan-200 opacity-70 border-2 border-blue-700 pl-5 py-1 max-w-4xl shadow-4xl shadow-black'>
         <h2 class='text-xl font-semibold'>Your Job Applications</h2>
     </div>
     <x-card class='mb-2 pt-2 px-3 rounded-t-none'>

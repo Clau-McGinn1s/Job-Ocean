@@ -38,10 +38,15 @@ class ProfileController extends Controller
      */
     public function show(User $user, Profile $profile)
     {
-        if($user->cannot('view', Profile::class)){
+        if($user->cannot('view', $profile)){
             abort(403, "Mot authorized");
         }
-        return view("user.profile.show", ["profile" => $profile]);
+        return view("user.profile.show", [
+            "user" => $user,
+            "profile" => $profile,
+            "applications" => $user->jobApplications()? $user->jobApplications : [],
+            "offers" => $user->hasEmployer()? $user->employer->jobs : []
+        ]);
     }
 
     /**
