@@ -71,6 +71,8 @@ class Job extends Model
 
     public function isUserEmployer(Authenticatable|User|int $user) : bool 
     {
-        return $this->employer->where('user_id', $user->id ?? $user)->exists();
+        return is_int($user) ? 
+            $this->employer->user_id === $user :
+            $this->employer->user_id === $user->id;
     }
 }

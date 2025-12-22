@@ -44,7 +44,7 @@ class ProfileController extends Controller
         return view("user.profile.show", [
             "user" => $user,
             "profile" => $profile,
-            "applications" => $user->jobApplications()? $user->jobApplications : [],
+            "applications" => $user->jobApplications()? $user->jobApplications()->with('job')->get() : [],
             "offers" => $user->hasEmployer()? $user->employer->jobs : []
         ]);
     }

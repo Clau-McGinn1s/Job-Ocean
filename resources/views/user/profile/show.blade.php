@@ -5,7 +5,6 @@
         $profile->name => '#' ]"/>
     
     <x-card class='rounded-t-none mb-2 px-3 py-5'>
-         
         <div class='flex gap-5'>
             <div class="container p-2 bg-blue-300 w-fit h-fit rounded-full rounded-tr-none">
                 <x-profile-picture class=" max-w-50 max-h-50 min-w-50 min-h-50 border-2 border-blue-950"  :profile="$profile"/>
@@ -15,12 +14,12 @@
                     <h2 class='text-2xl font-bold text-slate-900'>
                         {{$profile->name}}
                     </h2>    
-                    @can('checkApplications', $profile->user)
+                    @can('checkApplications', $user)
                         <span class='text-lg font-bold text-slate-700'>
                             ⋅
                         </span>
                         <h3 class='text-xl font-light text-blue-600'>
-                            {{$profile->user->employer->company_name}}
+                            {{$user->employer->company_name}}
                         </h3>
                     @endcan
                 </div>
@@ -50,7 +49,7 @@
                 <div class="mt-2 flex space-x-2">
                     <p class="font-light text-xs text-slate-500">
                         <i class="fa-regular fa-clock"></i>
-                        Joined {{$profile->user->created_at->diffForHumans()}} 
+                        Joined {{$user->created_at->diffForHumans()}} 
                     </p>
                     @if($profile->location)
                         <p class="font-light text-xs text-slate-500">
@@ -67,7 +66,7 @@
 
     @can('create', \App\Models\Job::class)
         <div class='container rounded-t-lg  text-black  bg-cyan-200 opacity-70 border-2 border-blue-700 pl-5 py-1 max-w-4xl shadow-4xl shadow-black'>
-            <h2 class='text-xl font-semibold'>Listed jobs for {{ $profile->user->employer->company_name }}</h2>
+            <h2 class='text-xl font-semibold'>Listed jobs for {{ $user->employer->company_name }}</h2>
         </div>
         <x-card class='mb-2 pt-2 px-3 rounded-t-none'>
             @forelse ($offers as $company_job)

@@ -63,6 +63,6 @@ class User extends Authenticatable
 
     public function hasEmployer():bool
     {
-        return $this->employer()->exists();
+        return $this->employer !== null;
     }
 }

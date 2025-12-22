@@ -11,16 +11,18 @@
         <x-card class='text-sm text-slate-900 rounded-t-none py-2 mb-2' x-data="">
         
             <form action="{{ route('jobs.index') }}" method='GET' x-ref="form">
-                    <div class='mx-2 grid grid-cols-2 gap-3'>
+                    <div class='mx-2 grid grid-cols-2 gap-x-6'>
                         <span class="my-1 font-bold">Search
                             <x-text-input name='search' value="{{ request('search') }}" placeholder='Search for any text'/>
                         </span>
                         <span class="my-1 font-bold">Salary
-                            <span class="flex space-x-3">
+                            <span class="flex space-x-2 items-center">
                                 <x-text-input name='min_salary' value="{{ request('min_salary') }}" placeholder='From'/>
+                                <i class="fa-solid fa-arrows-left-right"></i>
                                 <x-text-input name='max_salary' value="{{ request('max_salary') }}" placeholder='To'/>
                             </span>
                         </span>
+                        <hr class="h-px bg-slate-300 border-slate-300 border mt-2 col-span-2">
                         <x-radio-group class='flex-wrap'
                             name="experience"
                             :options="\App\Models\Job::$experienceLevel"
